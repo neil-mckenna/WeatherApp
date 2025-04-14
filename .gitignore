@@ -1,0 +1,97 @@
+# Build results
+bin/
+obj/
+*.dll
+*.exe
+*.app
+*.apk
+*.aab
+*.msi
+*.nupkg
+
+# VS for Windows
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS Code
+.vscode/
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# macOS specific
+.DS_Store
+
+# Xamarin / MAUI generated files
+*.apk
+*.ap_
+*.log
+*.mdb
+*.pdb
+*.cache
+*.db
+*.db-shm
+*.db-wal
+*.bak
+*.bak~
+*.tmp
+
+# MAUI platforms
+**/Platforms/Android/obj/
+**/Platforms/Android/bin/
+**/Platforms/iOS/obj/
+**/Platforms/iOS/bin/
+**/Platforms/MacCatalyst/obj/
+**/Platforms/MacCatalyst/bin/
+**/Platforms/Windows/obj/
+**/Platforms/Windows/bin/
+**/Platforms/Tizen/obj/
+**/Platforms/Tizen/bin/
+
+# Package caches
+.nuget/
+packages/
+project.lock.json
+project.fragment.lock.json
+
+# Logs
+*.log
+
+# Secrets
+secrets.json
+
+# User-specific files
+*.userprefs
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Backup & temp files
+*.bak
+*.tmp
+*.swp
+*.swo
+
+# Node.js modules (if used in UI/web portion)
+node_modules/
+
+# Tizen
+*.tpk
+*.wgt
+
+# Images and design preview caches
+**/.idea
+**/designpreview
+
+# Flutter-style tooling output (if any hybrid usage)
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.dart_tool/
