@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using WeatherAppGroupProject.MVVM.Views;
 
 namespace WeatherAppGroupProject
 {
@@ -16,8 +17,13 @@ namespace WeatherAppGroupProject
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
+
+            // creates a new page instance each time it is called, this is a depency injection preventition step
+            builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<WeatherPage>();
+
 
             return builder.Build();
         }

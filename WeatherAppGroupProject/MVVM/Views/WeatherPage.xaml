@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:WeatherAppGroupProject.MVVM.ViewModels"
+             x:Class="WeatherAppGroupProject.MVVM.Views.WeatherPage"
+             Title="Weather Data">
+
+    <!-- this is the context binding to teh relevant viewmodel, akin to bindingContext = (this or that)  -->
+    <ContentPage.BindingContext>
+        <viewmodel:WeatherViewModel/>
+    </ContentPage.BindingContext>
+
+    <!-- UI scroll view -->
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <!-- Debug Counter to count teh amount of records for  teh sample data measurmenets -->
+            <Label Text="{Binding Measurements.Count, StringFormat='Total items: {0}'}"
+                   FontSize="20"
+                   TextColor="Red"/>
+
+            <!-- Current Weather Card -->
+            <Frame>
+                <VerticalStackLayout>
+
+                    <!-- Card Header -->
+                    <Label Text="Current Weather"
+                           FontSize="18"
+                           FontAttributes="Bold"/>
+
+                    <!-- Weather Data Grid -->
+                    <Grid
+                        Padding="10"
+                        ColumnDefinitions="Auto, *" 
+                          RowDefinitions="Auto, Auto, Auto, Auto">
+
+                        <!-- Time Row -->
+                        <Label Text="Time: " 
+                               Grid.Column="0" Grid.Row="0"/>
+                        <Label Text="{Binding Measurements[0].Time, StringFormat='{0:HH:mm}'}" 
+                               Grid.Column="1" Grid.Row="0"/>
+
+                        <!-- Temperature Row -->
+                        <Label Text="Temp: " 
+                               Grid.Column="0" Grid.Row="1"/>
+                        <Label Text="{Binding Measurements[0].Temperature, StringFormat='{0}°C'}"
+                               Grid.Column="1" Grid.Row="1"/>
+
+                        <!-- Humidity Row -->
+                        <Label Text="Humidity: "
+                               Grid.Column="0" Grid.Row="2"/>
+                        <Label Text="{Binding Measurements[0].Humidity, StringFormat='{0}%'}"
+                               Grid.Column="1" Grid.Row="2"/>
+
+                        <!-- Wind Speed Row -->
+                        <Label Text="Wind Speed: "
+                               Grid.Column="0" Grid.Row="3"/>
+                        <Label Text="{Binding Measurements[0].WindSpeed, StringFormat='{0} m/s'}"
+                               Grid.Column="1" Grid.Row="3"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+            
+            <!-- Weather Records List Collection -->
+            <CollectionView ItemsSource="{Binding Measurements}"
+                          SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="#DDDDDD" 
+                               CornerRadius="10"
+                               Padding="15"
+                               Margin="0,0,0,10">
+                            <Grid ColumnDefinitions="Auto, *, Auto, *"
+                                  RowDefinitions="Auto, Auto, Auto">
+
+                                <!-- Row 1: Time -->
+                                <Label Text="Time:" 
+                                       Grid.Column="0" Grid.Row="0"
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding Time, StringFormat='{0:HH:mm}'}" 
+                                       Grid.Column="1" Grid.Row="0"/>
+
+                                <!-- Row 2: Temperature & Humidity -->
+                                <Label Text="Temp:" 
+                                       Grid.Column="0" Grid.Row="1"
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding Temperature, StringFormat='{0}°C'}"
+                                       Grid.Column="1" Grid.Row="1"/>
+
+                                <Label Text="Humidity:" 
+                                       Grid.Column="2" Grid.Row="1"
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding Humidity, StringFormat='{0}%'}"
+                                       Grid.Column="3" Grid.Row="1"/>
+
+                                <!-- Row 3: Wind -->
+                                <Label Text="Wind:" 
+                                       Grid.Column="0" Grid.Row="2"
+                                       FontAttributes="Bold"/>
+                                <Label Text="{Binding WindSpeed, StringFormat='{0} m/s at {1}°'}"
+                                       Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="2"/>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

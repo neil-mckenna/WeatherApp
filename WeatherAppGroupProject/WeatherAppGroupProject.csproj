@@ -65,10 +65,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="MVVM\Models\" />
-	  <Folder Include="MVVM\" />
-	  <Folder Include="MVVM\ViewModels\" />
-	  <Folder Include="MVVM\Views\" />
+	  <MauiXaml Update="MVVM\Views\WeatherPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

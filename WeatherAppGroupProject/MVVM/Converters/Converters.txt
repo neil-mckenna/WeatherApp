@@ -1,0 +1,9 @@
+﻿// i created this folder as a stub at the moment 
+
+As we may need a data conversion at some point and attached inside this for later usage
+
+As the MVVM folder is a similar to a Framework in my mind
+
+Things i would pontentially use this for
+
+Data Conversion with database file, JSON, String formatters, Language, Temperaute conversions and so on.

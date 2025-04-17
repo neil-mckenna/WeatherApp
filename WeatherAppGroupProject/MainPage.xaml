@@ -3,6 +3,46 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WeatherAppGroupProject.MainPage">
 
+    <!-- main page layout -->
+    <ScrollView>
+        <VerticalStackLayout 
+            Spacing="20"
+            Padding="30"
+            >
+            
+            <!-- Welcome bit -->
+            <Label
+                Text="Weather App"
+                FontSize="32"
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                
+                >
+                
+            </Label>
+
+            <!-- Add more navigation buttons -->
+            
+            <!-- Navigation button for weather app -->
+            <Button
+                Text="View Weather Data"
+                Clicked="NavigationToWeatherPage"
+                HorizontalOptions="Center"
+                Padding="20 , 10"
+                BackgroundColor="Navy"
+                TextColor="White"
+                
+                >
+            </Button>
+            
+            
+            
+        </VerticalStackLayout>
+        
+        
+        
+    </ScrollView>
+
 
 
 </ContentPage>
