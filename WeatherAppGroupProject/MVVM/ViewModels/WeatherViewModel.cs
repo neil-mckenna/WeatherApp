@@ -1,15 +1,36 @@
-﻿using System.Collections.ObjectModel;
+﻿// database stuff
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using WeatherAppGroupProject.MVVM.Models;
+using WeatherAppGroupProject.Utilities;
+
 
 namespace WeatherAppGroupProject.MVVM.ViewModels
 {
-    public class WeatherViewModel
+    public class WeatherViewModel : INotifyPropertyChanged
     {
         // fields
         private static Random _random = new Random();   // used for random generation
         private WeatherDataModel _weatherDataModel = new(); // data container
         private ObservableCollection<WeatherMeasurementsModel> _measurements;
+
+        private string _connectionStatus;
+        public string ConnectionStatus
+        {
+            get => _connectionStatus;
+            set
+            {
+                if (_connectionStatus != value)
+                {
+                    _connectionStatus = value;
+                    Debug.WriteLine($"Connection Status Changed: {value}");
+                    OnPropertyChanged(nameof(ConnectionStatus));
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         // weather data property 
         public WeatherDataModel WeatherData
@@ -60,8 +81,51 @@ namespace WeatherAppGroupProject.MVVM.ViewModels
             Debug.WriteLine("VIEW MODEL initialsed");
             Measurements.CollectionChanged += (s, e) => Debug.WriteLine($"Collection changed: {Measurements.Count}");
 
+            TestDatabaseConnectionAsync();
 
         }
+
+        // Database connection check
+        private async void TestDatabaseConnectionAsync()
+        {
+            try
+            {
+                bool isConnected = await AppConfig.TestConnectionAsync();
+
+                if (isConnected)
+                {
+                    ConnectionStatus = "Connected to Database";
+                    Debug.WriteLine("✅ DATABASE CONNECTION SUCCESSFUL");
+                    // Show success dialog
+
+                }
+                else
+                {
+                    ConnectionStatus = "Failed to Connect";
+                    Debug.WriteLine("❌ DATABASE CONNECTION FAILED");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ConnectionStatus = $"Error: {ex.Message}";
+                Debug.WriteLine($"❌ DATABASE CONNECTION FAILED WITH EXCEPTION: {ex.Message} {ex}");
+
+            }
+
+            Debug.WriteLine($"Connection Status: {ConnectionStatus}");
+
+
+        }
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
+
+
 
     }
 }

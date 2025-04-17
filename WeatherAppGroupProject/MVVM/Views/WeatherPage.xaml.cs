@@ -1,7 +1,9 @@
-namespace WeatherAppGroupProject.MVVM.Views;
+﻿namespace WeatherAppGroupProject.MVVM.Views;
 
 public partial class WeatherPage : ContentPage
 {
+    private Page _currentPage;
+
     public WeatherPage()
     {
         InitializeComponent();
@@ -12,7 +14,13 @@ public partial class WeatherPage : ContentPage
 
         //BindingContext = new WeatherViewModel();
 
+
     }
+
+
+
+
+
 
 
 }

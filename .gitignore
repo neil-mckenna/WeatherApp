@@ -95,3 +95,7 @@ node_modules/
 .packages
 .pub-cache/
 .dart_tool/
+
+# Config files
+appsettings.json
+appsettings.*.json
